@@ -1,14 +1,13 @@
 package org.helpQueue.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,6 +24,7 @@ import java.util.Date;
 @Table(name = "Ticket", schema = "qa")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Ticket {
 
     @Id

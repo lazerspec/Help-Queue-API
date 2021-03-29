@@ -80,7 +80,7 @@ public class UnitTestDepartmentService {
     @Test
     public void testGetInvalidId() {
         expectedException.expect(IdNotFoundException.class);
-        Department department = departmentService.getDepartmentById(3);
+        Department department = departmentService.getDepartmentById(3L);
     }
 
     @Test
@@ -132,6 +132,7 @@ public class UnitTestDepartmentService {
         }
 
         when(departmentRepository.findById(toBeDeleted.getId())).thenReturn(Optional.of(toBeDeleted));
+
         doNothing().when(departmentRepository).deleteById(toBeDeleted.getId());
 
         departmentService.deleteDepartmentById(toBeDeleted.getId());
@@ -146,6 +147,7 @@ public class UnitTestDepartmentService {
 
     // Service this is unit test, need to do int test
     // ticket need to do unit test, then int test
+    // And custom SQL
 
     // Same with controllers
 

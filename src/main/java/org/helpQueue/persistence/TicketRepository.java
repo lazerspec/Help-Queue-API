@@ -11,6 +11,4 @@ public interface TicketRepository extends JpaRepository<Ticket,Long> {
     @Query(value = "SELECT * FROM qa.TICKET WHERE department_id IS NULL", nativeQuery = true)
     List<Ticket> findOrphanedTickets();
 
-
-
 }

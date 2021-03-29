@@ -12,10 +12,10 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -24,19 +24,16 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 @Slf4j
 @ActiveProfiles(profiles = "test")
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@Sql(scripts = "classpath:data-test.sql")
 public class IntTestDepartmentService {
 
 
@@ -106,6 +103,8 @@ public class IntTestDepartmentService {
         newDepartment.setTicketList(ticketList);
         Department savedDepartment = departmentService.saveADepartment(newDepartment);
 
+        List<Department> departmentList = departmentService.getAllDepartments();
+
         assertThat(savedDepartment.getDepartmentName(), is("WithTickets"));
         assertThat(savedDepartment.getId(), is(4L));
         assertThat(savedDepartment.getTicketList().size(), is(1));
@@ -139,14 +138,14 @@ public class IntTestDepartmentService {
     }
 
     @Test
-    @Transactional
+   @Transactional
     public void testDeleteADepartmentWithTickets() {
         expectedException.expect(IdNotFoundException.class);
-
         Department deptToBeDeleted = departmentService.getDepartmentById(1L);
 
         // Only one ticket is orphaned at this point
         List<Ticket> orphanedTickets = ticketService.getAllOrphanedTickets();
+
         assertThat(orphanedTickets.size(), is(1));
 
         assertThat(deptToBeDeleted.getId(), is(1L));

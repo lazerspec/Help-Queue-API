@@ -39,8 +39,6 @@ public class TicketService {
         return ticketRepository.findById(id).orElseThrow(() -> new IdNotFoundException(id));
     }
 
-
-    // Test for exceptions
     public void deleteATicket(long ticketId) {
         try {
             ticketRepository.deleteById(ticketId);
@@ -48,9 +46,7 @@ public class TicketService {
             log.error("Error", e);
             throw new IdNotFoundException(ticketId);
         }
-
     }
-
 
 
 }

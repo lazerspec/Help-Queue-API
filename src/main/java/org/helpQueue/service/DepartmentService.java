@@ -34,7 +34,6 @@ public class DepartmentService {
 
     // Set tickets belonging to this department as null, leaving them orphaned.
     public void deleteDepartmentById(long id) {
-        // Need to get by ID the department, individually set each ticket to null
         Department departmentList = this.getDepartmentById(id);
 
         for (Ticket ticket : departmentList.getTicketList()) {
@@ -48,6 +47,5 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    //todo - save/create a department
 
 }

@@ -2,7 +2,6 @@ package org.helpQueue.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Department;
 import org.helpQueue.domain.Ticket;
 import org.helpQueue.exception.IdNotFoundException;
 import org.helpQueue.persistence.TicketRepository;
@@ -40,10 +39,8 @@ public class UnitTestTicketService {
     @MockBean
     private TicketRepository ticketRepository;
 
-
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
-
 
     @Before
     public void setup() {
@@ -107,7 +104,6 @@ public class UnitTestTicketService {
         updatedTicket.setUrgencyLevel("MINOR");
 
         when(ticketRepository.save(ticketToBeUpdated)).thenReturn(updatedTicket);
-
         Ticket ticketFromUpdate = ticketService.updateATicket(ticketToBeUpdated);
 
         assertThat(ticketFromUpdate, is(updatedTicket));
@@ -127,10 +123,8 @@ public class UnitTestTicketService {
 
     private List<Ticket> getATicketList() {
         List<Ticket> ticketList = new ArrayList<>();
-
         ticketList.add(new Ticket(1,null,"Title","Author","A Desc",new Date(),"URGENT","OPEN", new Date()));
         ticketList.add(new Ticket(2,null,"Title2","Author2","A Desc2",new Date(),"URGENT","OPEN", new Date()));
-
 
         return ticketList;
     }

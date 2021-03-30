@@ -142,19 +142,6 @@ public class UnitTestDepartmentService {
         verify(departmentRepository,times(1)).findById(toBeDeleted.getId());
     }
 
-
-// todo - finish off testing with int testing of department and ticket services and controllers
-
-    // Service this is unit test, need to do int test
-    // ticket need to do unit test, then int test
-    // And custom SQL
-
-    // Same with controllers
-
-
-
-
-
     private List<Department> getTestDepartmentsList() {
         List<Department> departmentList = new ArrayList<>();
 

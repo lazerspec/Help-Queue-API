@@ -42,15 +42,4 @@ public class Department {
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Ticket> ticketList = new ArrayList<>();
 
-//    public void addTicket(Ticket ticket) {
-//        ticketList.add(ticket);
-//        ticket.setDepartment(this);
-//    }
-//
-//    public void removeTicket(Ticket ticket) {
-//        ticketList.remove(ticket);
-//        ticket.setDepartment(null);
-//    }
-
-
 }

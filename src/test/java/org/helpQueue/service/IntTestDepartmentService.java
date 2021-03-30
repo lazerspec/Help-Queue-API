@@ -26,7 +26,6 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertTrue;
 
-
 @Slf4j
 @ActiveProfiles(profiles = "test")
 @SpringBootTest
@@ -35,7 +34,6 @@ import static org.junit.Assert.assertTrue;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @Sql(scripts = "classpath:data-test.sql")
 public class IntTestDepartmentService {
-
 
     @Autowired
     private DepartmentService departmentService;
@@ -48,7 +46,6 @@ public class IntTestDepartmentService {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
-
 
     @Before
     public void setup() {

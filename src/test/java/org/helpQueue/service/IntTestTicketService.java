@@ -83,7 +83,6 @@ public class IntTestTicketService {
         Ticket ticket = ticketService.findTicketById(90L);
     }
 
-    // Save a ticket with an existing department?
     @Test
     public void testCreateAnOrphanTicket() {
         Ticket ticketToBeCreated = new Ticket("Title1","Author1","Description1","MAJOR","OPEN");
@@ -151,6 +150,7 @@ public class IntTestTicketService {
     }
 
     @Test
+    @Transactional
     public void testDeleteATicket() {
         expectedException.expect(IdNotFoundException.class);
 
@@ -159,7 +159,9 @@ public class IntTestTicketService {
         assertThat(ticket.getUrgencyLevel(), is("MAJOR"));
 
         ticketService.deleteATicket(2L);
-        Ticket attemptToFindTicket = ticketService.findTicketById(2L);
+
+        // Attempt to delete again
+        ticketService.deleteATicket(2L);
     }
 
     @Test

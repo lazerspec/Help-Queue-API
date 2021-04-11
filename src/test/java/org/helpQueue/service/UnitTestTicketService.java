@@ -22,7 +22,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -113,10 +112,11 @@ public class UnitTestTicketService {
     @Test
     public void testDeleteATicketI() {
         Ticket ticketToBeDeleted = this.getASingleTicket();
-        doNothing().when(ticketRepository).deleteById(ticketToBeDeleted.getId());
+        when(ticketRepository.deleteATicket(ticketToBeDeleted.getId())).thenReturn(1);
+
         ticketService.deleteATicket(ticketToBeDeleted.getId());
 
-        verify(ticketRepository, times(1)).deleteById(ticketToBeDeleted.getId());
+        verify(ticketRepository, times(1)).deleteATicket(ticketToBeDeleted.getId());
     }
 
 

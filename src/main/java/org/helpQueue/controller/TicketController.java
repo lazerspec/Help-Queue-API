@@ -50,16 +50,19 @@ public class TicketController {
 
     @PostMapping("/save")
     public ResponseEntity<Ticket> saveATicket(@RequestBody Ticket ticket) {
+        log.info("Saving ticket: {}", ticket);
         return new ResponseEntity<>(ticketService.saveATicket(ticket), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Ticket> updateATicket(@RequestBody Ticket ticket) {
+        log.info("Updating ticket: {}", ticket);
         return new ResponseEntity<>(ticketService.updateATicket(ticket), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteATicket(@PathVariable(name = "id") long id) {
+        log.info("Deleting ticket with Id: {}", id);
         ticketService.deleteATicket(id);
         return ResponseEntity.noContent().build();
     }

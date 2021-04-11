@@ -40,10 +40,9 @@ public class TicketService {
     }
 
     public void deleteATicket(long ticketId) {
-        try {
-            ticketRepository.deleteById(ticketId);
-        } catch (EmptyResultDataAccessException e) {
-            log.error("Error", e);
+        int rowsAffected = ticketRepository.deleteATicket(ticketId);
+
+        if (rowsAffected != 1) {
             throw new IdNotFoundException(ticketId);
         }
     }

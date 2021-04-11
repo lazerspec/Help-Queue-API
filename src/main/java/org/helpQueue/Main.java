@@ -1,4 +1,4 @@
-package org.lazerspec;
+package org.helpQueue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

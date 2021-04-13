@@ -64,12 +64,24 @@ public class Ticket {
     @UpdateTimestamp
     private Date lastUpdated;
 
+    @Column(name="solution")
+    private String solution;
+
     public Ticket(String title, String author, String description, String urgencyLevel, String status) {
         this.title = title;
         this.author = author;
         this.description = description;
         this.urgencyLevel = urgencyLevel;
         this.status = status;
+    }
+
+    public Ticket(String title, String author, String description, String urgencyLevel, String status, String solution) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.urgencyLevel = urgencyLevel;
+        this.status = status;
+        this.solution = solution;
     }
 
 

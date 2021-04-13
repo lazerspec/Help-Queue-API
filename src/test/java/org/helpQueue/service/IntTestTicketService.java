@@ -55,7 +55,7 @@ public class IntTestTicketService {
     public void testGetTicketsFromDatabase() {
         List<Ticket> ticketList = ticketService.getAllTickets();
 
-        assertThat(ticketList.size(),is(4));
+        assertThat(ticketList.size(),is(5));
         assertThat(ticketList.get(0).getTitle(), is("Ticket1"));
     }
 
@@ -74,7 +74,7 @@ public class IntTestTicketService {
 
         assertThat(ticket.getDepartment().getDepartmentName(), is("Wealth"));
         assertThat(ticket.getId(), is(2L));
-        assertThat(ticket.getStatus(), is("OPEN"));
+        assertThat(ticket.getStatus(), is("open"));
     }
 
     @Test
@@ -85,10 +85,10 @@ public class IntTestTicketService {
 
     @Test
     public void testCreateAnOrphanTicket() {
-        Ticket ticketToBeCreated = new Ticket("Title1","Author1","Description1","MAJOR","OPEN");
+        Ticket ticketToBeCreated = new Ticket("Title1","Author1","Description1","high","open");
         Ticket ticketJustCreated = ticketService.saveATicket(ticketToBeCreated);
 
-        assertThat(ticketJustCreated.getId(), is(5L));
+        assertThat(ticketJustCreated.getId(), is(6L));
         assertThat(ticketJustCreated.getTitle(), is("Title1"));
 
         List<Ticket> orphanTickets = ticketService.getAllOrphanedTickets();
@@ -98,7 +98,7 @@ public class IntTestTicketService {
     @Test
     @Transactional
     public void testCreateATicketWithADepartment() {
-        Ticket ticketToBeCreated = new Ticket("Title1","Author1","Description1","MAJOR","OPEN");
+        Ticket ticketToBeCreated = new Ticket("Title1","Author1","Description1","high","open");
         Department department = departmentService.getDepartmentById(3L);
 
         ticketToBeCreated.setDepartment(department);
@@ -106,7 +106,7 @@ public class IntTestTicketService {
         Ticket ticketJustCreated = ticketService.saveATicket(ticketToBeCreated);
 
         assertThat(ticketJustCreated.getDepartment(), is(department));
-        assertThat(ticketJustCreated.getId(), is(5L));
+        assertThat(ticketJustCreated.getId(), is(6L));
         assertThat(ticketJustCreated.getTitle(), is("Title1"));
     }
 
@@ -114,12 +114,12 @@ public class IntTestTicketService {
     public void testUpdateATicket() {
         Ticket ticketToBeUpdated = ticketService.findTicketById(1L);
 
-        assertThat(ticketToBeUpdated.getUrgencyLevel(), is("MAJOR"));
+        assertThat(ticketToBeUpdated.getUrgencyLevel(), is("high"));
 
-        ticketToBeUpdated.setUrgencyLevel("MINOR");
+        ticketToBeUpdated.setUrgencyLevel("low");
         Ticket updatedTicket = ticketService.updateATicket(ticketToBeUpdated);
 
-        assertThat(updatedTicket.getUrgencyLevel(), is("MINOR"));
+        assertThat(updatedTicket.getUrgencyLevel(), is("low"));
         assertThat(updatedTicket.getId(), is(1L));
     }
 
@@ -156,7 +156,7 @@ public class IntTestTicketService {
 
         Ticket ticket = ticketService.findTicketById(2L);
         assertThat(ticket.getId(), is(2L));
-        assertThat(ticket.getUrgencyLevel(), is("MAJOR"));
+        assertThat(ticket.getUrgencyLevel(), is("high"));
 
         ticketService.deleteATicket(2L);
 

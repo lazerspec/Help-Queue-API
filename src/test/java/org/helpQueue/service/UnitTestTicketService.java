@@ -65,7 +65,7 @@ public class UnitTestTicketService {
 
     @Test
     public void testGetTicketById() {
-        Ticket ticket = new Ticket(1,null,"Title","Author","A Desc",new Date(),"URGENT","OPEN", new Date());
+        Ticket ticket = new Ticket(1,null,"Title","Author","A Desc",new Date(),"high","open", new Date(),null);
         when(ticketRepository.findById(1L)).thenReturn(java.util.Optional.of(ticket));
 
         Ticket ticketFromRepository = ticketService.findTicketById(1L);
@@ -82,8 +82,8 @@ public class UnitTestTicketService {
 
     @Test
     public void testCreateATicket() {
-        Ticket ticketToSave = new Ticket("TicketToSave","Author","A Desc","URGENT","OPEN");
-        Ticket ticketToReturnFromRepository = new Ticket(1,null,"TicketToSave","Author","A Desc",new Date(),"URGENT","OPEN", new Date());
+        Ticket ticketToSave = new Ticket("TicketToSave","Author","A Desc","high","open");
+        Ticket ticketToReturnFromRepository = new Ticket(1,null,"TicketToSave","Author","A Desc",new Date(),"high","open", new Date(),null);
 
         when(ticketRepository.save(ticketToSave)).thenReturn(ticketToReturnFromRepository);
 
@@ -100,7 +100,7 @@ public class UnitTestTicketService {
         Ticket ticketToBeUpdated = this.getASingleTicket();
 
         Ticket updatedTicket = ticketToBeUpdated;
-        updatedTicket.setUrgencyLevel("MINOR");
+        updatedTicket.setUrgencyLevel("low");
 
         when(ticketRepository.save(ticketToBeUpdated)).thenReturn(updatedTicket);
         Ticket ticketFromUpdate = ticketService.updateATicket(ticketToBeUpdated);
@@ -123,14 +123,14 @@ public class UnitTestTicketService {
 
     private List<Ticket> getATicketList() {
         List<Ticket> ticketList = new ArrayList<>();
-        ticketList.add(new Ticket(1,null,"Title","Author","A Desc",new Date(),"URGENT","OPEN", new Date()));
-        ticketList.add(new Ticket(2,null,"Title2","Author2","A Desc2",new Date(),"URGENT","OPEN", new Date()));
+        ticketList.add(new Ticket(1,null,"Title","Author","A Desc",new Date(),"high","open", new Date(),null));
+        ticketList.add(new Ticket(2,null,"Title2","Author2","A Desc2",new Date(),"high","open", new Date(),null));
 
         return ticketList;
     }
 
     private Ticket getASingleTicket() {
-        return new Ticket(1,null,"Title","Author","A Desc",new Date(),"URGENT","OPEN", new Date());
+        return new Ticket(1,null,"Title","Author","A Desc",new Date(),"high","open", new Date(),null);
     }
 
 

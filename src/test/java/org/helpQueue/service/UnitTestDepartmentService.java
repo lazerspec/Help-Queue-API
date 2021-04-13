@@ -183,8 +183,8 @@ public class UnitTestDepartmentService {
         ticket.setTitle("Ticket1");
         ticket.setAuthor("Person1");
         ticket.setDescription("A fake description");
-        ticket.setUrgencyLevel("Major");
-        ticket.setStatus("OPEN");
+        ticket.setUrgencyLevel("high");
+        ticket.setStatus("open");
 
         ticketList.add(ticket);
 

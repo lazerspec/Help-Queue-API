@@ -96,7 +96,7 @@ public class IntTestDepartmentService {
         newDepartment.setDepartmentName("WithTickets");
 
         List<Ticket> ticketList = new ArrayList<>();
-        ticketList.add(new Ticket("Ticket1","Person A","A description","URGENT","OPEN"));
+        ticketList.add(new Ticket("Ticket1","Person A","A description","high","open"));
         newDepartment.setTicketList(ticketList);
         Department savedDepartment = departmentService.saveADepartment(newDepartment);
 

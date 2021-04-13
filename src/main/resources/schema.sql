@@ -19,6 +19,7 @@ CREATE TABLE qa.TICKET (
     urgency_level VARCHAR(100),
     status VARCHAR(100),
     last_updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    solution VARCHAR(MAX) DEFAULT NULL,
     primary key(id)
 );
 

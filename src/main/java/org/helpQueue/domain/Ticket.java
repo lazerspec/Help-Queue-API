@@ -1,6 +1,7 @@
 package org.helpQueue.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,6 +52,7 @@ public class Ticket {
     @Column(name = "time_created", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date timeCreated;
 
     @Column(name = "urgency_level")
@@ -62,10 +64,21 @@ public class Ticket {
     @Column(name = "last_updated")
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdated;
 
-    @Column(name="solution")
+    @Column(name = "solution")
     private String solution;
+
+
+    public Ticket(long id, String title, String author, String description, String urgencyLevel, String status) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.urgencyLevel = urgencyLevel;
+        this.status = status;
+    }
 
     public Ticket(String title, String author, String description, String urgencyLevel, String status) {
         this.title = title;
@@ -74,16 +87,6 @@ public class Ticket {
         this.urgencyLevel = urgencyLevel;
         this.status = status;
     }
-
-    public Ticket(String title, String author, String description, String urgencyLevel, String status, String solution) {
-        this.title = title;
-        this.author = author;
-        this.description = description;
-        this.urgencyLevel = urgencyLevel;
-        this.status = status;
-        this.solution = solution;
-    }
-
 
 
 }

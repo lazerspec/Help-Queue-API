@@ -1,13 +1,10 @@
 package org.helpQueue.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +25,6 @@ import java.util.List;
 public class Department {
 
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +37,14 @@ public class Department {
     @ToString.Exclude
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Ticket> ticketList = new ArrayList<>();
+
+    public Department(long id, String departmentName) {
+        this.id = id;
+        this.departmentName = departmentName;
+    }
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
 
 }

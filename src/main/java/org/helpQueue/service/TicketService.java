@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.helpQueue.domain.Ticket;
 import org.helpQueue.exception.IdNotFoundException;
 import org.helpQueue.persistence.TicketRepository;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

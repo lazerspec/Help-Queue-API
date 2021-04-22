@@ -5,6 +5,9 @@ INSERT INTO qa.DEPARTMENT (department_name) VALUES ('Trade');
 
 INSERT INTO qa.TICKET (department_id,title,author,description,urgency_level,status, solution) VALUES (1,'Ticket1','Parvir Chomber','A description of the ticket','high','open',null);
 INSERT INTO qa.TICKET (department_id,title,author,description,urgency_level,status,solution) VALUES (1,'Ticket4','Samsung Galaxy','A fourth desc of the ticket','high','open',null);
+INSERT INTO qa.TICKET (department_id,title,author,description,urgency_level,status,solution) VALUES (1,'Crashing error','Tom Jeeve','Computer crashes','high','open',null);
+INSERT INTO qa.TICKET (department_id,title,author,description,urgency_level,status,solution) VALUES (1,'Network Error','Jimmy Butler','Cannot get online','high','in progress',null);
+
 INSERT INTO qa.TICKET (department_id,title,author,description,urgency_level,status,solution) VALUES (2,'Ticket2','Stan Marsh','A second description','high','open',null);
 INSERT INTO qa.TICKET (title,author,description,urgency_level,status,solution) VALUES ('Ticket3','Randy Marsh','An orphaned ticket description','high','open',null);
 

@@ -1,4 +1,4 @@
-package org.helpQueue.domain;
+package org.helpqueue.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;

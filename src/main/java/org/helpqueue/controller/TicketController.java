@@ -1,8 +1,9 @@
-package org.helpQueue.controller;
+package org.helpqueue.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Ticket;
-import org.helpQueue.service.TicketService;
+import org.helpqueue.domain.Ticket;
+import org.helpqueue.dto.TicketDTO;
+import org.helpqueue.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,15 +50,39 @@ public class TicketController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Ticket> saveATicket(@RequestBody Ticket ticket) {
-        log.info("Saving ticket: {}", ticket);
-        return new ResponseEntity<>(ticketService.saveATicket(ticket), HttpStatus.CREATED);
+    public ResponseEntity<Ticket> saveATicket(@RequestBody TicketDTO ticketDTO) {
+        Ticket persistentTicket = new Ticket();
+        persistentTicket.setDepartment(ticketDTO.getDepartment());
+        persistentTicket.setUrgencyLevel(ticketDTO.getUrgencyLevel());
+        persistentTicket.setStatus(ticketDTO.getStatus());
+        persistentTicket.setDescription(ticketDTO.getDescription());
+        persistentTicket.setTitle(ticketDTO.getTitle());
+        persistentTicket.setAuthor(ticketDTO.getAuthor());
+        persistentTicket.setSolution(ticketDTO.getSolution());
+
+
+        log.info("Saving ticket: {}", persistentTicket);
+        return new ResponseEntity<>(ticketService.saveATicket(persistentTicket), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Ticket> updateATicket(@RequestBody Ticket ticket) {
-        log.info("Updating ticket: {}", ticket);
-        return new ResponseEntity<>(ticketService.updateATicket(ticket), HttpStatus.CREATED);
+    public ResponseEntity<Ticket> updateATicket(@RequestBody TicketDTO ticketDTO) {
+
+        Ticket persistentTicket = new Ticket();
+        persistentTicket.setDepartment(ticketDTO.getDepartment());
+        persistentTicket.setUrgencyLevel(ticketDTO.getUrgencyLevel());
+        persistentTicket.setStatus(ticketDTO.getStatus());
+        persistentTicket.setDescription(ticketDTO.getDescription());
+        persistentTicket.setTitle(ticketDTO.getTitle());
+        persistentTicket.setAuthor(ticketDTO.getAuthor());
+        persistentTicket.setSolution(ticketDTO.getSolution());
+
+        persistentTicket.setLastUpdated(ticketDTO.getLastUpdated());
+        persistentTicket.setTimeCreated(ticketDTO.getTimeCreated());
+        persistentTicket.setId(ticketDTO.getId());
+
+        log.info("Updating ticket: {}", persistentTicket);
+        return new ResponseEntity<>(ticketService.updateATicket(persistentTicket), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -1,6 +1,6 @@
-package org.helpQueue.persistence;
+package org.helpqueue.persistence;
 
-import org.helpQueue.domain.Department;
+import org.helpqueue.domain.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,10 @@
-package org.helpQueue.controller;
+package org.helpqueue.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Department;
-import org.helpQueue.service.DepartmentService;
+import org.helpqueue.domain.Department;
+import org.helpqueue.dto.DepartmentDTO;
+import org.helpqueue.service.DepartmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,17 +45,28 @@ public class DepartmentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Department> saveADepartment(@RequestBody Department department) {
-        // Possible stack overflow?
-        log.info("Saving department: {}", department);
-        return new ResponseEntity<>(departmentService.saveADepartment(department),HttpStatus.CREATED);
+    public ResponseEntity<Department> saveADepartment(@RequestBody DepartmentDTO departmentDTO) {
+
+        Department persistentDepartment = new Department();
+        persistentDepartment.setDepartmentName(departmentDTO.getDepartmentName());
+        persistentDepartment.setTicketList(departmentDTO.getTicketList());
+
+
+        log.info("Saving department: {}", persistentDepartment);
+        return new ResponseEntity<>(departmentService.saveADepartment(persistentDepartment),HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Department> updateADepartment(@RequestBody Department department) {
-        // Possible stack overflow?
-        log.info("Updating department: {}", department);
-        return new ResponseEntity<>(departmentService.updateADepartment(department),HttpStatus.CREATED);
+    public ResponseEntity<Department> updateADepartment(@RequestBody DepartmentDTO departmentDTO) {
+
+        Department persistentDepartment = new Department();
+
+        persistentDepartment.setDepartmentName(departmentDTO.getDepartmentName());
+        persistentDepartment.setTicketList(departmentDTO.getTicketList());
+        persistentDepartment.setId(departmentDTO.getId());
+
+        log.info("Updating department: {}", persistentDepartment);
+        return new ResponseEntity<>(departmentService.updateADepartment(persistentDepartment),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")

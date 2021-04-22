@@ -1,11 +1,11 @@
-package org.helpQueue.service;
+package org.helpqueue.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Department;
-import org.helpQueue.domain.Ticket;
-import org.helpQueue.exception.IdNotFoundException;
-import org.helpQueue.persistence.DepartmentRepository;
+import org.helpqueue.domain.Department;
+import org.helpqueue.domain.Ticket;
+import org.helpqueue.exception.IdNotFoundException;
+import org.helpqueue.persistence.DepartmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

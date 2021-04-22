@@ -1,10 +1,10 @@
-package org.helpQueue.service;
+package org.helpqueue.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Department;
-import org.helpQueue.domain.Ticket;
-import org.helpQueue.exception.IdNotFoundException;
-import org.helpQueue.persistence.TicketRepository;
+import org.helpqueue.domain.Department;
+import org.helpqueue.domain.Ticket;
+import org.helpqueue.exception.IdNotFoundException;
+import org.helpqueue.persistence.TicketRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,7 +32,7 @@ import static org.junit.Assert.assertTrue;
 @Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @Sql(scripts = "classpath:data-test.sql")
-public class IntTestTicketService {
+public class TicketServiceIntTest {
 
     @Autowired
     private TicketService ticketService;

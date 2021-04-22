@@ -1,14 +1,12 @@
-package org.helpQueue.service;
+package org.helpqueue.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Department;
-import org.helpQueue.domain.Ticket;
-import org.helpQueue.exception.IdNotFoundException;
-import org.helpQueue.persistence.DepartmentRepository;
+import org.helpqueue.domain.Department;
+import org.helpqueue.domain.Ticket;
+import org.helpqueue.exception.IdNotFoundException;
+import org.helpqueue.persistence.DepartmentRepository;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +22,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
@@ -33,7 +32,7 @@ import static org.junit.Assert.assertTrue;
 @Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @Sql(scripts = "classpath:data-test.sql")
-public class IntTestDepartmentService {
+public class DepartmentServiceIntTest {
 
     @Autowired
     private DepartmentService departmentService;
@@ -44,8 +43,6 @@ public class IntTestDepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setup() {
@@ -72,8 +69,9 @@ public class IntTestDepartmentService {
 
     @Test
     public void testGetDepartmentWithInvalidId() {
-        expectedException.expect(IdNotFoundException.class);
-        Department department = departmentService.getDepartmentById(5L);
+        assertThrows(IdNotFoundException.class, () -> {
+            Department department = departmentService.getDepartmentById(5L);
+        });
     }
 
 
@@ -124,20 +122,21 @@ public class IntTestDepartmentService {
     @Test
     @Transactional
     public void testDeleteADepartment() {
-        expectedException.expect(IdNotFoundException.class);
-
         Department deptToBeDeleted = departmentService.getDepartmentById(3L);
         assertThat(deptToBeDeleted.getId(), is(3L));
         assertThat(deptToBeDeleted.getDepartmentName(), is("Trade"));
 
         departmentService.deleteDepartmentById(3L);
-        Department attemptToFindDeletedDept = departmentService.getDepartmentById(3L);
+
+        assertThrows(IdNotFoundException.class, () -> {
+            Department attemptToFindDeletedDept = departmentService.getDepartmentById(3L);
+        });
+
     }
 
     @Test
    @Transactional
     public void testDeleteADepartmentWithTickets() {
-        expectedException.expect(IdNotFoundException.class);
         Department deptToBeDeleted = departmentService.getDepartmentById(1L);
 
         // Only one ticket is orphaned at this point
@@ -157,7 +156,11 @@ public class IntTestDepartmentService {
         assertTrue(allNewOrphanedTickets.contains(deptToBeDeleted.getTicketList().get(0)));
         assertTrue(allNewOrphanedTickets.contains(deptToBeDeleted.getTicketList().get(1)));
 
-        Department attemptToFindDeletedDept = departmentService.getDepartmentById(1L);
+
+        assertThrows(IdNotFoundException.class, () -> {
+            Department attemptToFindDeletedDept = departmentService.getDepartmentById(1L);
+        });
+
     }
 
 }

@@ -1,10 +1,10 @@
-package org.helpQueue.service;
+package org.helpqueue.service;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.helpQueue.domain.Ticket;
-import org.helpQueue.exception.IdNotFoundException;
-import org.helpQueue.persistence.TicketRepository;
+import org.helpqueue.domain.Ticket;
+import org.helpqueue.exception.IdNotFoundException;
+import org.helpqueue.persistence.TicketRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles(profiles = "test")
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UnitTestTicketService {
+public class TicketServiceUnitTest {
 
     @Autowired
     private TicketService ticketService;

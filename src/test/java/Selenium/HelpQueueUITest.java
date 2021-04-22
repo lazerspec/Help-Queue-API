@@ -41,7 +41,7 @@ public class HelpQueueUITest {
     }
 
     @Test
-    @Ignore
+    @Ignore("Requires API to be running")
     public void testDepartmentMenuFunctionalityWithServer() throws InterruptedException {
         driver.get(uiLocation);
         WebElement menu = driver.findElement(By.id("deptMainMenu"));

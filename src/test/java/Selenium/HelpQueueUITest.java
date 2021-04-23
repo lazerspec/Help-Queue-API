@@ -14,6 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 import static org.junit.Assert.assertEquals;
 
 @TestPropertySource("classpath:application-test.properties")
+@Ignore("Not required to test the API")
 public class HelpQueueUITest {
 
     private WebDriver driver;

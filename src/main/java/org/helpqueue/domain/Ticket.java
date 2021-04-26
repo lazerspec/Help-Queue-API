@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
-@Table(name = "Ticket", schema = "qa")
+@Table(name = "ticket", schema = "qa")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

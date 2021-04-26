@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket,Long> {
 
-    @Query(value = "SELECT * FROM qa.TICKET WHERE department_id IS NULL", nativeQuery = true)
+    @Query(value = "SELECT * FROM qa.ticket WHERE department_id IS NULL", nativeQuery = true)
     List<Ticket> findOrphanedTickets();
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM qa.TICKET WHERE id = ?1", nativeQuery = true)
+    @Query(value = "DELETE FROM qa.ticket WHERE id = ?1", nativeQuery = true)
     int deleteATicket(@Param("id") long id);
 
 }

@@ -29,6 +29,7 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-3'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'mysql:mysql-connector-java:8.0.20'
 
 }
 
@@ -40,4 +41,8 @@ task zip(type: Zip) {
     from jar
     from 'doc'
     from 'config'
+}
+
+bootRun {
+    systemProperties System.properties
 }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Department", schema = "qa")
+@Table(name = "department", schema = "qa")
 @Data
 @NoArgsConstructor
 public class Department {

@@ -2,6 +2,7 @@ FROM gradle:6.3.0 AS build-stage
 
 COPY . /build
 WORKDIR /build
+RUN ls && gradle -v
 RUN gradle build
 
 FROM java:8 AS runtime

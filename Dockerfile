@@ -10,4 +10,4 @@ COPY --from=build-stage /build/libs/ticket-help-api-1.0-SNAPSHOT.jar ticket-api.
 
 RUN ls
 
-ENTRYPOINT ["/usr/bin/java","-jar","ticket-api.jar"]
+ENTRYPOINT ["/usr/bin/java","-jar","-Dspring.profiles.active=cloud","ticket-api.jar"]

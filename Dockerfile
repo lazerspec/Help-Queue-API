@@ -4,10 +4,11 @@ RUN ls
 WORKDIR /build
 RUN ls
 RUN gradle build -x test
-RUN ls build/
+RUN ls build/libs
 
 FROM java:8 AS runtime
 RUN ls
+RUN ls build/libs
 WORKDIR /opt/ticket-app
 RUN ls
 COPY --from=build-stage /build/libs/ticket-help-api-1.0-SNAPSHOT.jar ticket-api.jar

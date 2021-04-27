@@ -4,7 +4,7 @@ RUN ls
 WORKDIR /build
 RUN ls
 RUN gradle build -x test
-RUN ls
+RUN ls build/
 
 FROM java:8 AS runtime
 RUN ls

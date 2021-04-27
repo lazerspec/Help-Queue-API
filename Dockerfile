@@ -10,7 +10,8 @@ FROM java:8 AS runtime
 RUN ls
 WORKDIR /opt/ticket-app
 RUN ls
-COPY --from=0 /build/libs/ticket-help-api-1.0-SNAPSHOT.jar ticket-api.jar
+RUN ls /opt/ticket-app
+COPY --from=build-stage /build/build/libs/ticket-help-api-1.0-SNAPSHOT.jar ticket-api.jar
 
 RUN ls
 

@@ -1,9 +1,9 @@
 FROM gradle:6.3.0 AS build-stage
 
 
-COPY . /build
+COPY . .
 RUN ls
-WORKDIR /build
+# WORKDIR /build
 RUN ls && gradle -v
 RUN gradle build
 

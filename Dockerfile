@@ -5,7 +5,7 @@ COPY . /build
 RUN ls
 WORKDIR /build
 RUN ls && gradle -v
-RUN gradle build
+RUN gradle build -x test
 
 FROM java:8 AS runtime
 WORKDIR /opt/ticket-app

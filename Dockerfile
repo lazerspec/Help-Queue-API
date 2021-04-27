@@ -2,7 +2,7 @@ FROM gradle:latest AS build-stage
 
 COPY . /build
 WORKDIR /build
-RUN gradle clean build
+RUN gradle build
 
 FROM java:8 AS runtime
 WORKDIR /opt/ticket-app

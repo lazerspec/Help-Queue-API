@@ -1,4 +1,4 @@
-FROM gradle:latest AS build-stage
+FROM gradle:6.3.0 AS build-stage
 
 COPY . /build
 WORKDIR /build

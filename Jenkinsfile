@@ -34,5 +34,11 @@ pipeline {
                    sh "sed 's/{{username}}/${DB_USERNAME}/g;s/{{password}}/${DB_PASS}/g;s/{{rdsEndpoint}}/${DB_ENDPOINT}/g' rds-credentials.yaml | ./kubectl apply -f -"
          }
        }
+        stage('Re-deploy API') {
+               steps {
+                   sh "echo Re-deploying the API..."
+                    sh "./kubectl rollout restart deployment ticket-api-deployment"
+                }
+              }
     }
 }

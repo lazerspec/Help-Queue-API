@@ -1,7 +1,7 @@
 FROM gradle:6.3.0 AS build-stage
 COPY . /build
 WORKDIR /build
-RUN gradle build -x test
+RUN gradle build
 RUN ls build/libs
 
 FROM java:8 AS runtime

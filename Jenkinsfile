@@ -6,7 +6,7 @@ pipeline {
             steps {
                sh "echo Building the application..."
                sh "ls"
-               sh "docker build -t parvir/ticket-api:latest"
+               sh "docker build -t parvir/ticket-api:latest ."
             }
         }
         stage('Deploy to Dockerhub') {

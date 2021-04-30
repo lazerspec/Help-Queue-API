@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Docker login') {
+                steps {
+                   sh "echo Logging into Docker..."
+                   sh "ls"
+                   sh "sudo docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASS}"
+                }
+            }
         stage('Docker Build') {
             steps {
                sh "echo Building the application..."

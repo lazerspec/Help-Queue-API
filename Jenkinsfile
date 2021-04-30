@@ -2,18 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Docker Build') {
             steps {
-            sh "echo in build step"
-            }
-        }
-        stage('2nd Stage') {
-            steps {
-               sh "echo in 2nd step"
+               sh "echo Building the application..."
 
             }
         }
-        stage('Deploy') {
+        stage('Deploy to Dockerhub') {
             steps {
          sh "echo in deploy step"
 

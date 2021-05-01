@@ -28,17 +28,11 @@ pipeline {
                   sh "sudo docker image rm parvir/ticket-api"
                   }
              }
-         stage('Environment for kubernetes') {
-              steps {
-                   sh "echo Setting secrets for kubernetes"
-                   sh "sed 's/{{username}}/${DB_USERNAME}/g;s/{{password}}/${DB_PASS}/g;s/{{rdsEndpoint}}/${DB_ENDPOINT}/g' rds-credentials.yaml | ./kubectl apply -f -"
-         }
-       }
-        stage('Re-deploy API') {
-               steps {
-                   sh "echo Re-deploying the API..."
-                    sh "./kubectl rollout restart deployment ticket-api-deployment"
-                }
-              }
+//          stage('Environment for kubernetes') {
+//               steps {
+//                    sh "echo Setting secrets for kubernetes"
+//                    sh "sed 's/{{username}}/${DB_USERNAME}/g;s/{{password}}/${DB_PASS}/g;s/{{rdsEndpoint}}/${DB_ENDPOINT}/g' rds-credentials.yaml | ./kubectl apply -f -"
+//          }
+//        }
     }
 }
